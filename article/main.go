@@ -12,9 +12,7 @@ import (
 // gRPCサーバーの動作確認用
 func main() {
 	// clientを生成
-	// c, _ := client.NewClient("localhost:50051")
 	c, _ := client.NewClient("go-grpc-server_app_1:50051")
-	// c, _ := client.NewClient("go-grpc-server_app_1")
 
 	create(c)
 	read(c)
