@@ -12,7 +12,6 @@ import (
 )
 
 func main() {
-
 	// articleサーバーに接続
 	lis, err := net.Listen("tcp", ":50051")
 	if err != nil {
