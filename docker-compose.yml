@@ -1,0 +1,33 @@
+version: "3"
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/api/Dockerfile
+    command: go run article/server/server.go
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./:/app:cached
+    ports:
+      - 8081:8081
+    depends_on:
+      - "db"
+
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/db/Dockerfile
+    environment:
+      MYSQL_DATABASE: finder_development
+      MYSQL_ROOT_PASSWORD: finder0501
+      TZ: "Asia/Tokyo"
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - 13306:3306
+
+volumes:
+  db-data:
