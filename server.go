@@ -12,7 +12,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/playground"
 )
 
-const defaultPort = "8081"
+const defaultPort = "8080"
 
 func main() {
 	port := os.Getenv("PORT")
@@ -21,9 +21,7 @@ func main() {
 	}
 
 	// articleClientを生成
-	// articleClient, err := client.NewClient("localhost:50051")
 	articleClient, err := client.NewClient("go-grpc-server_app_1:50051")
-	// c, _ := client.NewClient("go-grpc-server_app_1:50051")
 	if err != nil {
 		// articleClient.Close()
 		log.Fatalf("Failed to create article client: %v\n", err)
